@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<!-- This is XML bullcrap
+   <extension
+         point="org.eclipse.wst.sse.ui.completionProposal"
+         id="mmarinov.from.scratch.again2.completionProposal">
+      <proposalCategory
+            id="mmarinov.from.scratch.again2.additional"
+            name="Will you please work">
+      </proposalCategory>
+      
+      <proposalComputer
+            activate="true"
+            categoryId="mmarinov.from.scratch.again2.additional"
+            class="mmarinov.from.scratch.again2.PluginCompletionProposalComputer"
+            id="mmarinov.from.scratch.again2.proposeThisShit">
+         <contentType id="org.eclipse.core.runtime.text"/>    
+      </proposalComputer>
+   </extension> 
+ -->
+ 
+ <extension point="org.eclipse.jdt.ui.javaCompletionProposalComputer"
+   id="nodeclispe_textual_proposals"
+   name="Nodeclipse Text Proposals">
+   <proposalCategory icon="icons/npm/npm.gif"/>
+ </extension>
+ <extension point="org.eclipse.jdt.ui.javaCompletionProposalComputer"
+   id="NodeclipseProposals"
+   name="Nodeclipse Proposals">
+   <javaCompletionProposalComputer
+      class="mmarinov.copy.nodeclipse.JSDTProposalComputer"
+      categoryId="org.eclipse.ui.texteditor.textual_proposals"
+      activate="true">
+   </javaCompletionProposalComputer>
+ </extension>
+ 
+</plugin>

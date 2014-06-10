@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="mmarinov.from.scratch.yet.again.ConvertHandler"
+            id="de.vogella.plugin.htmlconverter.convert"
+            name="HtmlConvert">
+      </command>
+      <command
+            id="mmarinov.from.scratch.yet.again.myCommand"
+            name="MyCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.jdt.ui.CompilationUnitEditor.EditorContext?after=additions">
+         <menu
+               label="I feel my body DANCE">
+            <command
+                  commandId="de.vogella.plugin.htmlconverter.convert"
+                  label="QQQQQQQQQQQQ"
+                  style="push">
+            </command>
+            <command
+                  commandId="mmarinov.from.scratch.yet.again.myCommand"
+                  label="MyCommand"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="mmarinov.from.scratch.yet.again.myCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+8">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="mmarinov.from.scratch.yet.again.MyCommand"
+            commandId="mmarinov.from.scratch.yet.again.myCommand">
+      </handler>
+   </extension>
+</plugin>

@@ -15,8 +15,8 @@ public class MyCompletionProposal {
 	    IDocument doc = context.getViewer().getDocument();
 	    int offset = context.getInvocationOffset();
 		String input = getInputString(doc, offset);
-		if (input.equals("asdf")) {
-			proposals.add(new CompletionProposal("OMFG BACON!", offset-input.length(), input.length(), "OMFG BACON!".length()));	
+		if ("asdf".startsWith(input)) {
+			proposals.add(new CompletionProposal("OMFG BACON!", offset-input.length(), input.length(), "OMFG BACON!".length()));
 		}
 		
 		return proposals;

@@ -30,9 +30,9 @@
    name="Nodeclipse Proposals">
    <javaCompletionProposalComputer
       class="mmarinov.copy.nodeclipse.JSDTProposalComputer"
-      categoryId="org.eclipse.ui.texteditor.textual_proposals"
+      categoryId="mmarinov.copy.nodeclipse.nodeclispe_textual_proposals"
       activate="true">
    </javaCompletionProposalComputer>
  </extension>
- 
+  
 </plugin>

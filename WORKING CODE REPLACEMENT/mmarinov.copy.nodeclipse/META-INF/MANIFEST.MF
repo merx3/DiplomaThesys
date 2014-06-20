@@ -5,9 +5,9 @@ Bundle-SymbolicName: org.nodeclipse.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.nodeclipse.ui.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
+ org.eclipse.core.runtime;bundle-version="3.9.100",
  org.eclipse.jface.text;bundle-version="3.8.101",
  org.eclipse.ui.console;bundle-version="3.5.200",
- org.eclipse.jdt.ui;bundle-version="3.9.1"
+ org.eclipse.jdt.ui;bundle-version="3.9.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy

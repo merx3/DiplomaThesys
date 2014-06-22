@@ -8,15 +8,17 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.contentassist.IContextInformation;
 
 public class MyCompletionProposal {
+ 	
 	public static List<ICompletionProposal> getSampleProposals(ContentAssistInvocationContext context){
 		List<ICompletionProposal> proposals = new ArrayList<ICompletionProposal>();
 	    IDocument doc = context.getViewer().getDocument();
 	    int offset = context.getInvocationOffset();
 		String input = getInputString(doc, offset);
 		if ("asdf".startsWith(input)) {
-			proposals.add(new CompletionProposal("OMFG BACON!", offset-input.length(), input.length(), "OMFG BACON!".length()));
+			proposals.add(new CompletionProposal("OMFG BACON!", offset-input.length(), input.length(), "OMFG BACON!".length(), null, "OMFG MY BACON!!!", null, ""));
 		}
 		
 		return proposals;

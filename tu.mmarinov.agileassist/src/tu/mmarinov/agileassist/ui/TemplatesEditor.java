@@ -48,7 +48,7 @@ public class TemplatesEditor extends Dialog {
 		Button btnNewButton = new Button(composite, SWT.NONE);
 		btnNewButton.setBounds(349, 248, 90, 30);
 		btnNewButton.setText("Edit");
-		composite.setVisible(false);
+		//composite.setVisible(false);
 		
 		List list = new List(composite, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		list.addSelectionListener(new SelectionAdapter() {

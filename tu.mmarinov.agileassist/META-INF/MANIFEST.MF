@@ -6,7 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: tu.mmarinov.agileassist.Activator
 Bundle-Vendor: mmarinov
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: org.eclipse.jdt.internal.ui,
  org.eclipse.jdt.internal.ui.text.java,
@@ -18,6 +19,4 @@ Import-Package: org.eclipse.jdt.internal.ui,
  org.eclipse.jface.text.templates.persistence,
  org.eclipse.ui.texteditor
 Bundle-ClassPath: .,
- swing2swt.jar,
- bin/
-
+ swing2swt.jar

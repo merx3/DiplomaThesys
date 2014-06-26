@@ -8,7 +8,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 import tu.mmarinov.agileassist.templatehandler.TemplateLoader;
-import tu.mmarinov.agileassist.ui.TemplatesEditor;
+import tu.mmarinov.agileassist.ui.TemplatesEditor;;
 
 public class EditTemplatesAction implements IObjectActionDelegate {
 

@@ -41,5 +41,5 @@ public class ProposalsAssistant {
             }
         }
         return buf.reverse().toString();
-    }	
+    }	 
 }

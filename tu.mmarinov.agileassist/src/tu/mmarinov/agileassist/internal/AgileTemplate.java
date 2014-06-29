@@ -14,11 +14,11 @@ public class AgileTemplate{
 	
 	public AgileTemplate(String name, String description, String[] defaultValues,
 			String proposalName, String proposalDescription){
-		this.name = name;
-		this.description = description;
-		this.defaultValues = defaultValues;
-		this.proposalName = proposalName;
-		this.proposalDescription = proposalDescription;
+		this.setName(name);
+		this.setDescription(description);
+		this.setDefaultValues(defaultValues);
+		this.setProposalName(proposalName);
+		this.setProposalDescription(proposalDescription);
 	}
 	
 	@Override
@@ -33,15 +33,15 @@ public class AgileTemplate{
 
 	public AgileTemplate applyInput(String input){
 		int iterations = Integer.parseInt(input.substring(this.getName().length(), input.length()));
-		AgileTemplate iteratedTemplate = replaceInsertSegments(this, iterations);
-		AgileTemplate finalTemplate = removeSegments(iteratedTemplate);	
+		AgileTemplate iteratedTemplate = replaceInsertSegments(iterations);
+		AgileTemplate finalTemplate = iteratedTemplate.removeSegments();	
 		finalTemplate.setName(input);
 		return finalTemplate;
 	}
 
-	private AgileTemplate replaceInsertSegments(AgileTemplate template, int iterations) {
-		StringBuilder desc = new StringBuilder(template.getDescription());
-		ArrayList<String> defaults = new ArrayList<String>(Arrays.asList(template.getDefaultValues()));
+	public AgileTemplate replaceInsertSegments(int iterations) {
+		StringBuilder desc = new StringBuilder(this.getDescription());
+		ArrayList<String> defaults = new ArrayList<String>(Arrays.asList(this.getDefaultValues()));
 		for (int i = 1; i < iterations; i++) {
 			int startReplace = desc.indexOf("$[#");
 			while (startReplace >= 0) {
@@ -53,7 +53,7 @@ public class AgileTemplate{
 				String replacementDescription = replaceTemplate.getDescription().replaceAll("\n", "\n" + whitespacesBeforeSegment);
 				desc = desc.replace(startReplace, endReplace + 1, replacementDescription);
 				// add the defaults of the inserted template
-				int segmentsBeforeCount = getSegmentsCount(desc, startReplace);
+				int segmentsBeforeCount = getDefaultSegmentsCount(desc, startReplace);
 				String[] defaultsToInsert = replaceTemplate.getDefaultValues();
 				defaults.remove(segmentsBeforeCount);
 				for (int j = 0; j < defaultsToInsert.length; j++) {
@@ -69,10 +69,10 @@ public class AgileTemplate{
 			desc = desc.replace(startReplace, endReplace + 1, "$[]");
 			startReplace = desc.indexOf("$[#");
 		}
-		return new AgileTemplate(template.getName(), desc.toString(), defaults.toArray(new String[defaults.size()]), template.getProposalName(), template.getProposalDescription());
+		return new AgileTemplate(this.getName(), desc.toString(), defaults.toArray(new String[defaults.size()]), this.getProposalName(), this.getProposalDescription());
 	}
 	
-	private int getSegmentsCount(StringBuilder sb, int endPos){
+	private int getDefaultSegmentsCount(StringBuilder sb, int endPos){
 		int startSearch = 0;
 		int count = 0;
 		while(startSearch >= 0){
@@ -89,13 +89,13 @@ public class AgileTemplate{
 		return count;
 	}
 	
-	private AgileTemplate removeSegments(AgileTemplate t) {
+	public AgileTemplate removeSegments() {
 		/*   Segments (strings) to replace with default values
 		 *   $[]
 		 *   $[some-text]
 		 */
-		StringBuilder desc = new StringBuilder(t.getDescription());
-		String[] defaults = t.getDefaultValues();
+		StringBuilder desc = new StringBuilder(this.getDescription());
+		String[] defaults = this.getDefaultValues();
 		int defaultValueIndex = 0;
 		int segmentStart = desc.indexOf("$[");
 		while (segmentStart >= 0) {
@@ -113,7 +113,7 @@ public class AgileTemplate{
 			}
 			segmentStart = desc.indexOf("$[");
 		}
-		return new AgileTemplate(t.getName(), desc.toString(), defaults, t.getProposalName(), t.getProposalDescription());
+		return new AgileTemplate(this.getName(), desc.toString(), new String[0], this.getProposalName(), this.getProposalDescription());
 	}
 
 	private String getWhitespacesBeforeSegment(StringBuilder desc,
@@ -130,11 +130,21 @@ public class AgileTemplate{
 		return result;
 	}
 
+	// getters and setters
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
-		this.name = name;
+		String nameWithoutSpaces = name.replace(" ", "");
+		boolean isNameValid = 
+				name.length() > 0
+				&& nameWithoutSpaces.length() == name.length(); 
+		if (isNameValid) {
+			this.name = name;	
+		}
+		else{
+			throw new IllegalArgumentException("Template name must be without spaces and not empty.");
+		}
 	}
 	public String getDescription() {
 		return description;
@@ -146,13 +156,23 @@ public class AgileTemplate{
 		return defaultValues;
 	}
 	public void setDefaultValues(String[] defaultValues) {
+		StringBuilder templateDescription = new StringBuilder(this.description);
+		if (getDefaultSegmentsCount(templateDescription, this.description.length()) != defaultValues.length) {
+			throw new IllegalArgumentException("Template default values must be the same number as the default segments in the template's description. Only segments with $[] and $[#some_name] count as default.");
+		}
 		this.defaultValues = defaultValues;
 	}
 	public String getProposalName() {
 		return proposalName;
 	}
 	public void setProposalName(String proposalName) {
-		this.proposalName = proposalName;
+		String nameWithoutSpaces = proposalName.replace(" ", "");
+		if (proposalName.length() > 0 && nameWithoutSpaces.length() == proposalName.length()) {
+			this.proposalName = proposalName;
+		}
+		else{
+			throw new IllegalArgumentException("Proposal name must be without spaces and not empty.");
+		}
 	}
 	public String getProposalDescription() {
 		return proposalDescription;

@@ -37,7 +37,7 @@
          point="org.eclipse.ui.handlers">
       <handler
             commandId="tu.mmarinov.agileassist.commands.InsertCodeCommand"
-            class="yyyyyyyyyyyyy.popup.actions.NewHandler"> 
+            class="tu.mmarinov.agileassist.ui.handlers.InsertCodeHandler"> 
       </handler>
    </extension>
    
@@ -78,9 +78,9 @@
                menubarPath="AgileAssistPopupMenu.menu1/group1"
                enablesFor="1"
                id="AgileAssistPopupMenu.InsertCode"
-               class="yyyyyyyyyyyyy.popup.actions.NewAction"
+               class="tu.mmarinov.agileassist.ui.handlers.InsertCodeAction"
                definitionId="tu.mmarinov.agileassist.commands.InsertCodeCommand">
          </action>
       </objectContribution>
-   </extension>
+   </extension>  
 </plugin>
